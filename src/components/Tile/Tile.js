@@ -1,25 +1,23 @@
 import React from "react";
 
 class Tile extends React.Component {
-  state = { value: this.props.value };
+ 
 
   handleChange = ({target}) => {
-    const value=parseInt(target.value);
     
-    if((value<10 && value>0))
-      this.setState({ value })
-
-    if(isNaN(value))
-      this.setState({ value: " " })      
+    const value=parseInt((target.value + '').charAt(0));      
+    this.props.changeBoard(this.props.index, value)        
   };
 
   render() {
+   const initialBoard=this.props.initialBoard.split('');
     return (
       <input
+        disabled={(initialBoard[this.props.index]!=='.') && 'disabled'}
         min='1'
         max='9' 
         type="number"
-        value={this.state.value}
+        value={this.props.value}
         onChange={this.handleChange}
       />
     );

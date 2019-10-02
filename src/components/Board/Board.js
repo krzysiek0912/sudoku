@@ -2,12 +2,24 @@ import React from 'react';
 import Tile from '../Tile/Tile'
 import './Board.css'
 class Board extends React.Component { 
-
+  
   render() {
-
-    const initialBoard=this.props.initialBoard.split('');
-    const Tiles=  initialBoard.map(
-            (value,index) => <Tile key={index} value={value}/>
+    
+    const board=this.props.board.split('');
+    
+    const Tiles=  board.map(
+            (value,index) =>
+                (<Tile 
+                  
+                  initialBoard={this.props.initialBoard}
+                  board={this.props.board}              
+                  key={index} 
+                  index={index} 
+                  value={value} 
+                  changeBoard={this.props.changeBoard}
+                 />
+                )
+            
           )
       
     return (
